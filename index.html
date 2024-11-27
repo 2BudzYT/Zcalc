@@ -16,7 +16,7 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
             margin: 0;
-            overflow: auto;
+            overflow-x: hidden;
             padding: 20px;
             display: flex;
             flex-direction: column;
@@ -77,6 +77,7 @@
             border-radius: 10px;
             box-shadow: 0 0 15px #ff1a1a;
             transition: transform 0.3s;
+            width: calc(33.333% - 20px); /* Three columns */
         }
 
         .variable:hover {
@@ -89,11 +90,13 @@
             margin: 10px;
             display: inline-block;
             transition: transform 0.3s, box-shadow 0.3s;
+            width: 80px;
+            height: 80px;
         }
 
         img {
-            width: 80px;
-            height: 80px;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
             border: 2px solid transparent;
             border-radius: 8px;
@@ -223,15 +226,26 @@
         }
 
         /* Responsive Design */
-        @media (max-width: 800px) {
+        @media (max-width: 900px) {
+            .variable {
+                width: calc(50% - 20px); /* Two columns */
+            }
+        }
+
+        @media (max-width: 600px) {
             .variables-container {
                 flex-direction: column;
                 align-items: center;
             }
 
+            .variable {
+                width: 100%; /* Single column */
+                max-width: 300px;
+            }
+
             img {
-                width: 70px; 
-                height: 70px;
+                width: 100%;
+                height: auto;
             }
 
             h1 {
@@ -309,6 +323,7 @@
                 padding: 5px 10px;
             }
         }
+
     </style>
 </head>
 <body>
