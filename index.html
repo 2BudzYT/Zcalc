@@ -12,7 +12,7 @@
         body {
             font-family: 'Russo One', sans-serif;
             background-color: #0d0d0d; /* Deep dark background */
-            background-image: url('images/Terminus_AARSummary_Background_BO6.png'); /* Local background image */
+            background-image: url('https://static.wikia.nocookie.net/callofduty/images/6/6e/Terminus_AARSummary_Background_BO6.png/revision/latest?cb=20241028192737'); /* Provided background image */
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -26,7 +26,7 @@
             position: relative;
         }
 
-        /* Dark Overlay to Enhance Darkness */
+        /* Dark Overlay to Enhance Background */
         body::before {
             content: "";
             position: fixed;
@@ -78,7 +78,7 @@
             border-radius: 10px;
             box-shadow: 0 0 15px #ff1a1a;
             transition: transform 0.3s;
-            width: calc(33.333% - 20px); /* Three columns */
+            width: calc(33.333% - 20px); /* Three columns by default */
         }
 
         .variable:hover {
@@ -95,22 +95,109 @@
             height: 80px;
         }
 
+        /* Responsive Adjustments for Image Sizes */
+        @media (max-width: 900px) {
+            .variable {
+                width: calc(50% - 20px); /* Two columns on medium screens */
+            }
+        }
+
         @media (max-width: 600px) {
-            .image-option {
-                width: 70px;
-                height: 70px;
-                margin: 8px;
+            .variables-container {
+                flex-direction: row; /* Keep images side by side on smaller screens */
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .variable {
+                width: calc(33.333% - 20px); /* Three columns on small screens */
+                max-width: 150px; /* Adjust based on desired size */
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.3rem;
+            }
+
+            #results h3 {
+                font-size: 1.5rem;
+            }
+
+            #results p {
+                font-size: 1rem;
+            }
+
+            .donation-banner {
+                width: 200px;
+                padding: 15px;
+            }
+
+            .donation-banner h3 {
+                font-size: 1.1rem;
+            }
+
+            .donation-banner p {
+                font-size: 0.8rem;
+            }
+
+            .donation-banner a {
+                font-size: 0.8rem;
+                padding: 6px 12px;
             }
         }
 
         @media (max-width: 500px) {
             .image-option {
-                width: 60px;
+                width: 60px; 
                 height: 60px;
                 margin: 6px;
             }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+
+            #results h3 {
+                font-size: 1.3rem;
+            }
+
+            #results p {
+                font-size: 0.95rem;
+            }
+
+            .donation-banner {
+                width: 180px;
+                padding: 10px;
+            }
+
+            .donation-banner h3 {
+                font-size: 1rem;
+            }
+
+            .donation-banner p {
+                font-size: 0.75rem;
+            }
+
+            .donation-banner a {
+                font-size: 0.75rem;
+                padding: 5px 10px;
+            }
         }
 
+        /* Image Styles */
         img {
             width: 100%;
             height: 100%;
@@ -122,7 +209,7 @@
         }
 
         img.selected {
-            border-color: #ff1a1a; /* Vibrant red border */
+            border-color: #ff1a1a; /* Highlight selected image */
             box-shadow: 0 0 15px #ff1a1a;
         }
 
@@ -242,105 +329,6 @@
             background-color: #e60000;
         }
 
-        /* Responsive Design */
-        @media (max-width: 900px) {
-            .variable {
-                width: calc(50% - 20px); /* Two columns */
-            }
-        }
-
-        @media (max-width: 600px) {
-            .variables-container {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .variable {
-                width: 100%; /* Single column */
-                max-width: 300px;
-            }
-
-            img {
-                width: 100%;
-                height: auto;
-            }
-
-            h1 {
-                font-size: 2rem;
-            }
-
-            h2 {
-                font-size: 1.3rem;
-            }
-
-            #results h3 {
-                font-size: 1.5rem;
-            }
-
-            #results p {
-                font-size: 1rem;
-            }
-
-            .donation-banner {
-                width: 200px;
-                padding: 15px;
-            }
-
-            .donation-banner h3 {
-                font-size: 1.1rem;
-            }
-
-            .donation-banner p {
-                font-size: 0.8rem;
-            }
-
-            .donation-banner a {
-                font-size: 0.8rem;
-                padding: 6px 12px;
-            }
-        }
-
-        @media (max-width: 500px) {
-            img {
-                width: 60px; 
-                height: 60px;
-            }
-
-            h1 {
-                font-size: 1.8rem;
-            }
-
-            h2 {
-                font-size: 1.2rem;
-            }
-
-            #results h3 {
-                font-size: 1.3rem;
-            }
-
-            #results p {
-                font-size: 0.95rem;
-            }
-
-            .donation-banner {
-                width: 180px;
-                padding: 10px;
-            }
-
-            .donation-banner h3 {
-                font-size: 1rem;
-            }
-
-            .donation-banner p {
-                font-size: 0.75rem;
-            }
-
-            .donation-banner a {
-                font-size: 0.75rem;
-                padding: 5px 10px;
-            }
-        }
-
     </style>
 </head>
 <body>
@@ -352,69 +340,69 @@
         <!-- X Variables -->
         <div class="variable" id="x-variables">
             <h2>X:</h2>
-            <div class="image-option" onclick="selectVariable('x', 0)">
-                <img src="images/symbols-01.jpg" alt="Value 0">
+            <div class="image-option" onclick="selectVariable('x', 0)" tabindex="0" role="button" aria-label="Select X value 0">
+                <img src="https://i.ibb.co/5rDRw30/symbols-01.jpg" alt="Value 0">
             </div>
-            <div class="image-option" onclick="selectVariable('x', 10)">
-                <img src="images/symbols-02.jpg" alt="Value 10">
+            <div class="image-option" onclick="selectVariable('x', 10)" tabindex="0" role="button" aria-label="Select X value 10">
+                <img src="https://i.ibb.co/PFmbJ00/symbols-02.jpg" alt="Value 10">
             </div>
-            <div class="image-option" onclick="selectVariable('x', 11)">
-                <img src="images/symbols-03.jpg" alt="Value 11">
+            <div class="image-option" onclick="selectVariable('x', 11)" tabindex="0" role="button" aria-label="Select X value 11">
+                <img src="https://i.ibb.co/FqXw4mG/symbols-03.jpg" alt="Value 11">
             </div>
-            <div class="image-option" onclick="selectVariable('x', 20)">
-                <img src="images/symbols-04.jpg" alt="Value 20">
+            <div class="image-option" onclick="selectVariable('x', 20)" tabindex="0" role="button" aria-label="Select X value 20">
+                <img src="https://i.ibb.co/TrNY7Qf/symbols-04.jpg" alt="Value 20">
             </div>
-            <div class="image-option" onclick="selectVariable('x', 21)">
-                <img src="images/symbols-05.jpg" alt="Value 21">
+            <div class="image-option" onclick="selectVariable('x', 21)" tabindex="0" role="button" aria-label="Select X value 21">
+                <img src="https://i.ibb.co/jfYKRth/symbols-05.jpg" alt="Value 21">
             </div>
-            <div class="image-option" onclick="selectVariable('x', 22)">
-                <img src="images/symbols-06.jpg" alt="Value 22">
+            <div class="image-option" onclick="selectVariable('x', 22)" tabindex="0" role="button" aria-label="Select X value 22">
+                <img src="https://i.ibb.co/bXGth05/symbols-06.jpg" alt="Value 22">
             </div>
         </div>
 
         <!-- Y Variables -->
         <div class="variable" id="y-variables">
             <h2>Y:</h2>
-            <div class="image-option" onclick="selectVariable('y', 0)">
-                <img src="images/symbols-01.jpg" alt="Value 0">
+            <div class="image-option" onclick="selectVariable('y', 0)" tabindex="0" role="button" aria-label="Select Y value 0">
+                <img src="https://i.ibb.co/5rDRw30/symbols-01.jpg" alt="Value 0">
             </div>
-            <div class="image-option" onclick="selectVariable('y', 10)">
-                <img src="images/symbols-02.jpg" alt="Value 10">
+            <div class="image-option" onclick="selectVariable('y', 10)" tabindex="0" role="button" aria-label="Select Y value 10">
+                <img src="https://i.ibb.co/PFmbJ00/symbols-02.jpg" alt="Value 10">
             </div>
-            <div class="image-option" onclick="selectVariable('y', 11)">
-                <img src="images/symbols-03.jpg" alt="Value 11">
+            <div class="image-option" onclick="selectVariable('y', 11)" tabindex="0" role="button" aria-label="Select Y value 11">
+                <img src="https://i.ibb.co/FqXw4mG/symbols-03.jpg" alt="Value 11">
             </div>
-            <div class="image-option" onclick="selectVariable('y', 20)">
-                <img src="images/symbols-04.jpg" alt="Value 20">
+            <div class="image-option" onclick="selectVariable('y', 20)" tabindex="0" role="button" aria-label="Select Y value 20">
+                <img src="https://i.ibb.co/TrNY7Qf/symbols-04.jpg" alt="Value 20">
             </div>
-            <div class="image-option" onclick="selectVariable('y', 21)">
-                <img src="images/symbols-05.jpg" alt="Value 21">
+            <div class="image-option" onclick="selectVariable('y', 21)" tabindex="0" role="button" aria-label="Select Y value 21">
+                <img src="https://i.ibb.co/jfYKRth/symbols-05.jpg" alt="Value 21">
             </div>
-            <div class="image-option" onclick="selectVariable('y', 22)">
-                <img src="images/symbols-06.jpg" alt="Value 22">
+            <div class="image-option" onclick="selectVariable('y', 22)" tabindex="0" role="button" aria-label="Select Y value 22">
+                <img src="https://i.ibb.co/bXGth05/symbols-06.jpg" alt="Value 22">
             </div>
         </div>
 
         <!-- Z Variables -->
         <div class="variable" id="z-variables">
             <h2>Z:</h2>
-            <div class="image-option" onclick="selectVariable('z', 0)">
-                <img src="images/symbols-01.jpg" alt="Value 0">
+            <div class="image-option" onclick="selectVariable('z', 0)" tabindex="0" role="button" aria-label="Select Z value 0">
+                <img src="https://i.ibb.co/5rDRw30/symbols-01.jpg" alt="Value 0">
             </div>
-            <div class="image-option" onclick="selectVariable('z', 10)">
-                <img src="images/symbols-02.jpg" alt="Value 10">
+            <div class="image-option" onclick="selectVariable('z', 10)" tabindex="0" role="button" aria-label="Select Z value 10">
+                <img src="https://i.ibb.co/PFmbJ00/symbols-02.jpg" alt="Value 10">
             </div>
-            <div class="image-option" onclick="selectVariable('z', 11)">
-                <img src="images/symbols-03.jpg" alt="Value 11">
+            <div class="image-option" onclick="selectVariable('z', 11)" tabindex="0" role="button" aria-label="Select Z value 11">
+                <img src="https://i.ibb.co/FqXw4mG/symbols-03.jpg" alt="Value 11">
             </div>
-            <div class="image-option" onclick="selectVariable('z', 20)">
-                <img src="images/symbols-04.jpg" alt="Value 20">
+            <div class="image-option" onclick="selectVariable('z', 20)" tabindex="0" role="button" aria-label="Select Z value 20">
+                <img src="https://i.ibb.co/TrNY7Qf/symbols-04.jpg" alt="Value 20">
             </div>
-            <div class="image-option" onclick="selectVariable('z', 21)">
-                <img src="images/symbols-05.jpg" alt="Value 21">
+            <div class="image-option" onclick="selectVariable('z', 21)" tabindex="0" role="button" aria-label="Select Z value 21">
+                <img src="https://i.ibb.co/jfYKRth/symbols-05.jpg" alt="Value 21">
             </div>
-            <div class="image-option" onclick="selectVariable('z', 22)">
-                <img src="images/symbols-06.jpg" alt="Value 22">
+            <div class="image-option" onclick="selectVariable('z', 22)" tabindex="0" role="button" aria-label="Select Z value 22">
+                <img src="https://i.ibb.co/bXGth05/symbols-06.jpg" alt="Value 22">
             </div>
         </div>
     </div>
@@ -492,6 +480,16 @@
                 banner.style.display = 'none';
             }
         }
+
+        // Accessibility: Allow selection via keyboard (Enter key)
+        document.querySelectorAll('.image-option').forEach(option => {
+            option.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.click();
+                }
+            });
+        });
     </script>
 </body>
 </html>
