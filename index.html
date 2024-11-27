@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Terminus Equation Calculator (BO6)</title>
+    <style>
+        /* Importing Google Fonts for a distressed and horror feel */
+        @import url('https://fonts.googleapis.com/css2?family=Nosifer&family=Russo+One&display=swap');
+
+        /* Global Styles */
+        body {
+            font-family: 'Russo One', sans-serif;
+            background-color: #0d0d0d; /* Deep dark background */
+            background-image: url('https://i.ibb.co/8Bcj1Gk/zombie-dark-background.jpg'); /* Replace with a suitable dark zombie-themed background */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            overflow: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #ffdddd; /* Light red for text */
+            position: relative;
+        }
+
+        /* Dark Overlay to Enhance Darkness */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black overlay */
+            z-index: -1;
+        }
+
+        /* Header Styles */
+        h1 {
+            margin-bottom: 1vh;
+            font-size: 2.5rem;
+            color: #ff1a1a; /* Vibrant red */
+            text-align: center;
+            text-shadow: 3px 3px #000;
+            font-family: 'Nosifer', cursive;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            color: #ff1a1a; /* Vibrant red */
+            text-align: center;
+            text-shadow: 1px 1px #000;
+        }
+
+        /* Variables Container */
+        .variables-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 900px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .variable {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin: 10px;
+            background-color: rgba(20, 20, 20, 0.85);
+            padding: 20px;
+            border: 2px solid #ff1a1a; /* Vibrant red border */
+            border-radius: 10px;
+            box-shadow: 0 0 15px #ff1a1a;
+            transition: transform 0.3s;
+        }
+
+        .variable:hover {
+            transform: scale(1.05);
+        }
+
+        /* Image Options */
+        .image-option {
+            cursor: pointer;
+            margin: 10px;
+            display: inline-block;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        img.selected {
+            border-color: #ff1a1a; /* Vibrant red border */
+            box-shadow: 0 0 15px #ff1a1a;
+        }
+
+        img:hover {
+            transform: scale(1.15);
+            box-shadow: 0 6px 12px rgba(255, 26, 26, 0.7); /* Red shadow on hover */
+        }
+
+        /* Results Section */
+        #results {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: rgba(20, 20, 20, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 20px #ff1a1a;
+            text-align: center;
+            width: 100%;
+            max-width: 900px;
+            color: #ffdddd;
+        }
+
+        #results h3 {
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+            color: #ff1a1a;
+            text-shadow: 2px 2px #000;
+            font-family: 'Nosifer', cursive;
+        }
+
+        #results p {
+            margin: 5px 0;
+            font-size: 1.2rem;
+            color: #ffdddd;
+        }
+
+        /* Footer Styles */
+        .footer {
+            margin-top: 2vh;
+            margin-bottom: 10vh;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #ffdddd;
+            text-shadow: 1px 1px #000;
+        }
+
+        .footer a {
+            color: #ff1a1a;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Donation Banner Styles */
+        .donation-banner {
+            position: fixed;
+            top: 70%;
+            right: 20px;
+            background-color: rgba(20, 20, 20, 0.95);
+            border: 2px solid #ff1a1a;
+            border-radius: 10px;
+            padding: 20px;
+            width: 240px;
+            box-shadow: 0 0 20px #ff1a1a;
+            text-align: center;
+            font-size: 0.95rem;
+            z-index: 1000;
+            color: #ffdddd;
+            font-family: 'Russo One', sans-serif;
+        }
+
+        .donation-banner .close-banner {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff1a1a;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .donation-banner .close-banner:hover {
+            color: #ffffff;
+        }
+
+        .donation-banner h3 {
+            margin: 0;
+            font-size: 1.3rem;
+            color: #ff1a1a;
+            text-shadow: 1px 1px #000;
+            font-family: 'Nosifer', cursive;
+        }
+
+        .donation-banner p {
+            margin: 15px 0;
+            font-size: 0.85rem;
+            color: #ffdddd;
+        }
+
+        .donation-banner a {
+            display: inline-block;
+            text-decoration: none;
+            font-size: 0.85rem;
+            color: #fff;
+            background-color: #ff1a1a;
+            padding: 8px 14px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .donation-banner a:hover {
+            background-color: #e60000;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 800px) {
+            .variables-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            img {
+                width: 70px; 
+                height: 70px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.3rem;
+            }
+
+            #results h3 {
+                font-size: 1.5rem;
+            }
+
+            #results p {
+                font-size: 1rem;
+            }
+
+            .donation-banner {
+                width: 200px;
+                padding: 15px;
+            }
+
+            .donation-banner h3 {
+                font-size: 1.1rem;
+            }
+
+            .donation-banner p {
+                font-size: 0.8rem;
+            }
+
+            .donation-banner a {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            img {
+                width: 60px; 
+                height: 60px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+
+            #results h3 {
+                font-size: 1.3rem;
+            }
+
+            #results p {
+                font-size: 0.95rem;
+            }
+
+            .donation-banner {
+                width: 180px;
+                padding: 10px;
+            }
+
+            .donation-banner h3 {
+                font-size: 1rem;
+            }
+
+            .donation-banner p {
+                font-size: 0.75rem;
+            }
+
+            .donation-banner a {
+                font-size: 0.75rem;
+                padding: 5px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Terminus Equation Calculator (BO6)</h1>    
+
+    <h2>Select Values for x, y and z</h2>
+
+    <div class="variables-container">
+        <!-- X Variables -->
+        <div class="variable" id="x-variables">
+            <h2>X:</h2>
+            <div class="image-option" onclick="selectVariable('x', 0)">
+                <img src="https://i.ibb.co/5rDRw30/symbols-01.jpg" alt="Value 0">
+            </div>
+            <div class="image-option" onclick="selectVariable('x', 10)">
+                <img src="https://i.ibb.co/PFmbJ00/symbols-02.jpg" alt="Value 10">
+            </div>
+            <div class="image-option" onclick="selectVariable('x', 11)">
+                <img src="https://i.ibb.co/FqXw4mG/symbols-03.jpg" alt="Value 11">
+            </div>
+            <div class="image-option" onclick="selectVariable('x', 20)">
+                <img src="https://i.ibb.co/TrNY7Qf/symbols-04.jpg" alt="Value 20">
+            </div>
+            <div class="image-option" onclick="selectVariable('x', 21)">
+                <img src="https://i.ibb.co/jfYKRth/symbols-05.jpg" alt="Value 21">
+            </div>
+            <div class="image-option" onclick="selectVariable('x', 22)">
+                <img src="https://i.ibb.co/bXGth05/symbols-06.jpg" alt="Value 22">
+            </div>
+        </div>
+
+        <!-- Y Variables -->
+        <div class="variable" id="y-variables">
+            <h2>Y:</h2>
+            <div class="image-option" onclick="selectVariable('y', 0)">
+                <img src="https://i.ibb.co/5rDRw30/symbols-01.jpg" alt="Value 0">
+            </div>
+            <div class="image-option" onclick="selectVariable('y', 10)">
+                <img src="https://i.ibb.co/PFmbJ00/symbols-02.jpg" alt="Value 10">
+            </div>
+            <div class="image-option" onclick="selectVariable('y', 11)">
+                <img src="https://i.ibb.co/FqXw4mG/symbols-03.jpg" alt="Value 11">
+            </div>
+            <div class="image-option" onclick="selectVariable('y', 20)">
+                <img src="https://i.ibb.co/TrNY7Qf/symbols-04.jpg" alt="Value 20">
+            </div>
+            <div class="image-option" onclick="selectVariable('y', 21)">
+                <img src="https://i.ibb.co/jfYKRth/symbols-05.jpg" alt="Value 21">
+            </div>
+            <div class="image-option" onclick="selectVariable('y', 22)">
+                <img src="https://i.ibb.co/bXGth05/symbols-06.jpg" alt="Value 22">
+            </div>
+        </div>
+
+        <!-- Z Variables -->
+        <div class="variable" id="z-variables">
+            <h2>Z:</h2>
+            <div class="image-option" onclick="selectVariable('z', 0)">
+                <img src="https://i.ibb.co/5rDRw30/symbols-01.jpg" alt="Value 0">
+            </div>
+            <div class="image-option" onclick="selectVariable('z', 10)">
+                <img src="https://i.ibb.co/PFmbJ00/symbols-02.jpg" alt="Value 10">
+            </div>
+            <div class="image-option" onclick="selectVariable('z', 11)">
+                <img src="https://i.ibb.co/FqXw4mG/symbols-03.jpg" alt="Value 11">
+            </div>
+            <div class="image-option" onclick="selectVariable('z', 20)">
+                <img src="https://i.ibb.co/TrNY7Qf/symbols-04.jpg" alt="Value 20">
+            </div>
+            <div class="image-option" onclick="selectVariable('z', 21)">
+                <img src="https://i.ibb.co/jfYKRth/symbols-05.jpg" alt="Value 21">
+            </div>
+            <div class="image-option" onclick="selectVariable('z', 22)">
+                <img src="https://i.ibb.co/bXGth05/symbols-06.jpg" alt="Value 22">
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Section -->
+    <div id="results">
+        <h3>Results:</h3>
+        <p id="result1">1° Number: </p>
+        <p id="result2">2° Number: </p>
+        <p id="result3">3° Number: </p>
+    </div>
+
+    <!-- Donation Banner -->
+    <div class="donation-banner">
+        <button class="close-banner" onclick="removeBanner()">×</button>
+        <h3>Thank You!</h3>
+        <p>To all the people who have donated or will donate.<br> Your support is crucial 💀🩸</p>
+        <a href="https://paypal.me/sim022" target="_blank">Help me buy another month of game pass</a>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>Made by Simo22
+            <a href="https://paypal.me/sim022" target="_blank">
+                Help me buy another month of game pass
+            </a>
+        </p>
+    </div>
+
+    <!-- JavaScript Section -->
+    <script>
+        let xValue = null;
+        let yValue = null;
+        let zValue = null;
+
+        function selectVariable(variable, value) {
+            if (variable === 'x') {
+                xValue = value;
+            } else if (variable === 'y') {
+                yValue = value;
+            } else if (variable === 'z') {
+                zValue = value;
+            }
+
+            updateImageSelection(variable, value);
+
+            if (xValue !== null && yValue !== null && zValue !== null) {
+                calculateResults();
+            }
+        }
+
+        function updateImageSelection(variable, value) {
+            const allImages = document.querySelectorAll(`#${variable}-variables img`);
+            allImages.forEach(img => img.classList.remove('selected'));
+
+            const selectedImage = document.querySelector(`#${variable}-variables img[alt="Value ${value}"]`);
+            if (selectedImage) {
+                selectedImage.classList.add('selected');
+            }
+        }
+
+        function calculateResults() {
+            const result1 = (xValue * 2) + 11; 
+            const result2 = ((zValue * 2) + yValue) - 5;
+            const result3 = (zValue + yValue) - xValue;
+
+            document.getElementById('result1').innerHTML = `1° Number: <strong>${result1}</strong>`;
+            document.getElementById('result2').innerHTML = `2° Number: <strong>${result2}</strong>`;
+            document.getElementById('result3').innerHTML = `3° Number: <strong>${Math.abs(result3)}</strong>`;
+        }
+
+        function removeBanner() {
+            const banner = document.querySelector('.donation-banner');
+            if (banner) {
+                banner.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
