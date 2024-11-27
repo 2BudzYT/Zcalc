@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Terminus Equation Calculator (BO6)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures proper scaling on mobile -->
     <style>
         /* Importing Google Fonts for a distressed and horror feel */
         @import url('https://fonts.googleapis.com/css2?family=Nosifer&family=Russo+One&display=swap');
@@ -11,7 +12,7 @@
         body {
             font-family: 'Russo One', sans-serif;
             background-color: #0d0d0d; /* Deep dark background */
-            background-image: url('https://i.ibb.co/8Bcj1Gk/zombie-dark-background.jpg'); /* Replace with a suitable dark zombie-themed background */
+            background-image: url('images/Terminus_AARSummary_Background_BO6.png'); /* Local background image */
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -92,6 +93,22 @@
             transition: transform 0.3s, box-shadow 0.3s;
             width: 80px;
             height: 80px;
+        }
+
+        @media (max-width: 600px) {
+            .image-option {
+                width: 70px;
+                height: 70px;
+                margin: 8px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .image-option {
+                width: 60px;
+                height: 60px;
+                margin: 6px;
+            }
         }
 
         img {
@@ -336,22 +353,22 @@
         <div class="variable" id="x-variables">
             <h2>X:</h2>
             <div class="image-option" onclick="selectVariable('x', 0)">
-                <img src="https://i.ibb.co/5rDRw30/symbols-01.jpg" alt="Value 0">
+                <img src="images/symbols-01.jpg" alt="Value 0">
             </div>
             <div class="image-option" onclick="selectVariable('x', 10)">
-                <img src="https://i.ibb.co/PFmbJ00/symbols-02.jpg" alt="Value 10">
+                <img src="images/symbols-02.jpg" alt="Value 10">
             </div>
             <div class="image-option" onclick="selectVariable('x', 11)">
-                <img src="https://i.ibb.co/FqXw4mG/symbols-03.jpg" alt="Value 11">
+                <img src="images/symbols-03.jpg" alt="Value 11">
             </div>
             <div class="image-option" onclick="selectVariable('x', 20)">
-                <img src="https://i.ibb.co/TrNY7Qf/symbols-04.jpg" alt="Value 20">
+                <img src="images/symbols-04.jpg" alt="Value 20">
             </div>
             <div class="image-option" onclick="selectVariable('x', 21)">
-                <img src="https://i.ibb.co/jfYKRth/symbols-05.jpg" alt="Value 21">
+                <img src="images/symbols-05.jpg" alt="Value 21">
             </div>
             <div class="image-option" onclick="selectVariable('x', 22)">
-                <img src="https://i.ibb.co/bXGth05/symbols-06.jpg" alt="Value 22">
+                <img src="images/symbols-06.jpg" alt="Value 22">
             </div>
         </div>
 
@@ -359,22 +376,22 @@
         <div class="variable" id="y-variables">
             <h2>Y:</h2>
             <div class="image-option" onclick="selectVariable('y', 0)">
-                <img src="https://i.ibb.co/5rDRw30/symbols-01.jpg" alt="Value 0">
+                <img src="images/symbols-01.jpg" alt="Value 0">
             </div>
             <div class="image-option" onclick="selectVariable('y', 10)">
-                <img src="https://i.ibb.co/PFmbJ00/symbols-02.jpg" alt="Value 10">
+                <img src="images/symbols-02.jpg" alt="Value 10">
             </div>
             <div class="image-option" onclick="selectVariable('y', 11)">
-                <img src="https://i.ibb.co/FqXw4mG/symbols-03.jpg" alt="Value 11">
+                <img src="images/symbols-03.jpg" alt="Value 11">
             </div>
             <div class="image-option" onclick="selectVariable('y', 20)">
-                <img src="https://i.ibb.co/TrNY7Qf/symbols-04.jpg" alt="Value 20">
+                <img src="images/symbols-04.jpg" alt="Value 20">
             </div>
             <div class="image-option" onclick="selectVariable('y', 21)">
-                <img src="https://i.ibb.co/jfYKRth/symbols-05.jpg" alt="Value 21">
+                <img src="images/symbols-05.jpg" alt="Value 21">
             </div>
             <div class="image-option" onclick="selectVariable('y', 22)">
-                <img src="https://i.ibb.co/bXGth05/symbols-06.jpg" alt="Value 22">
+                <img src="images/symbols-06.jpg" alt="Value 22">
             </div>
         </div>
 
@@ -382,22 +399,22 @@
         <div class="variable" id="z-variables">
             <h2>Z:</h2>
             <div class="image-option" onclick="selectVariable('z', 0)">
-                <img src="https://i.ibb.co/5rDRw30/symbols-01.jpg" alt="Value 0">
+                <img src="images/symbols-01.jpg" alt="Value 0">
             </div>
             <div class="image-option" onclick="selectVariable('z', 10)">
-                <img src="https://i.ibb.co/PFmbJ00/symbols-02.jpg" alt="Value 10">
+                <img src="images/symbols-02.jpg" alt="Value 10">
             </div>
             <div class="image-option" onclick="selectVariable('z', 11)">
-                <img src="https://i.ibb.co/FqXw4mG/symbols-03.jpg" alt="Value 11">
+                <img src="images/symbols-03.jpg" alt="Value 11">
             </div>
             <div class="image-option" onclick="selectVariable('z', 20)">
-                <img src="https://i.ibb.co/TrNY7Qf/symbols-04.jpg" alt="Value 20">
+                <img src="images/symbols-04.jpg" alt="Value 20">
             </div>
             <div class="image-option" onclick="selectVariable('z', 21)">
-                <img src="https://i.ibb.co/jfYKRth/symbols-05.jpg" alt="Value 21">
+                <img src="images/symbols-05.jpg" alt="Value 21">
             </div>
             <div class="image-option" onclick="selectVariable('z', 22)">
-                <img src="https://i.ibb.co/bXGth05/symbols-06.jpg" alt="Value 22">
+                <img src="images/symbols-06.jpg" alt="Value 22">
             </div>
         </div>
     </div>
